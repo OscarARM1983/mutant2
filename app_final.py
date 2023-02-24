@@ -58,8 +58,7 @@ def listar_dna():
     try:
         cursor=db.connect()
         sql=sqlalchemy.text("SELECT id, dna0, dna1, dna2, dna3, dna4, dna5, mutante FROM dna_verificados")
-        cursor.execute(sql)
-        datos=cursor.fetchall() #Convierte toda la respuesta en algo entendible para python
+        datos=cursor.execute(sql).fetchall() #Convierte toda la respuesta en algo entendible para python
         verificados=[]
         for fila in datos:
             verificado={'id':fila[0], 'dna0':fila[1], 'dna1':fila[2], 'dna2':fila[3], 'dna3':fila[4], 'dna4':fila[5], 'dna5':fila[6], 'mutante':fila[7]}
@@ -256,8 +255,7 @@ def isMutant():
             
             cursor=db.connect()
             sql4=sqlalchemy.text("SELECT dna0, dna1, dna2, dna3, dna4, dna5 FROM dna_verificados")
-            cursor.execute(sql4)
-            datos=cursor.fetchall() #Convierte toda la respuesta en algo entendible para python
+            datos=cursor.execute(sql4).fetchall() #Convierte toda la respuesta en algo entendible para python
 
             def dna_repetido(datos, filas):
                 verificados=[]
@@ -331,8 +329,7 @@ def stats_dna():
     try:
         cursor=db.connect()
         sql5=sqlalchemy.text("SELECT mutante FROM dna_verificados")
-        cursor.execute(sql5)
-        datos2=cursor.fetchall() #Convierte toda la respuesta en algo entendible para python
+        datos2=cursor.execute(sql5).fetchall() #Convierte toda la respuesta en algo entendible para python
         print(f"datos2: {datos2}")
 
         count_mutant_dna = 0
